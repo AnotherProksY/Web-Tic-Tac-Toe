@@ -82,4 +82,4 @@ def resetValues(doReset):
 def runServer(start):
     """Запускаем сервер"""
     if start:
-        run(host='localhost', reloader=True, port=8080, debug=True)
+        run(host='localhost', port=8080)
