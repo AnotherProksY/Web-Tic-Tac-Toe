@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>❌ Tic-Tac-Toe ⭕️</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/buttons.css">
+  </head>
+  <body>
+
+    <header>
+      <h1>Game Starts</h1>
+    </header>
+
+    <div class="gameView">
+      <table>
+        <tr>
+          <td>{{place_1}}</td>
+          <td>{{place_2}}</td>
+          <td>{{place_3}}</td>
+        </tr>
+        <tr>
+          <td>{{place_4}}</td>
+          <td>{{place_5}}</td>
+          <td>{{place_6}}</td>
+        </tr>
+        <tr>
+          <td>{{place_7}}</td>
+          <td>{{place_8}}</td>
+          <td>{{place_9}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="turn">
+      <form action="/Turn" method="post">
+        Введите число <br>
+        <script type="text/javascript">
+        function checkValue(input) {
+            var value = input.value;
+            var rep = /[-\.;":'a-zA-Zа-яА-Я]/;
+            if (rep.test(value)) {
+                value = value.replace(rep, '');
+                input.value = value;
+            }
+        }
+        </script>
+        <input name="myTurn" type="text" onkeyup="return checkValue(this);" autocomplete="off" maxlength="1" required/><br>
+        <input type="submit" value="PUT NUMBER" class="click c"/>
+      </form>
+    </div>
+
+    <div class="images">
+      <div class="image" id="GitHub">
+        <a href="https://github.com/AnotherProksY?tab=repositories">
+          <img src="/static/GitHub-Logo.png" height="39" width="150" alt="">
+        </a>
+      </div>
+      <div class="image" id="MyFace">
+        <a href="https://github.com/AnotherProksY?tab=repositories">
+          <img src="/static/My Face.png" height="40" width="40" alt="">
+        </a>
+      </div>
+    </div>
+
+  </body>
+</html>
