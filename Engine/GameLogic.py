@@ -46,6 +46,7 @@ def checkWin(board):
 
 
 def gameLoop(myTurn):
+    """Игровая петля"""
     global turnsRemaining
     global turn
     global congrats
