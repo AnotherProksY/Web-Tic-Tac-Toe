@@ -6,8 +6,12 @@ from bottle import template, TEMPLATE_PATH, static_file
 # Модуль игровой логики
 import GameLogic as GL
 
+# Модуль для получения пути
+from pathlib import Path
+
 # Путь до HTML файлов
-absolutePath = '/Users/kamil/Desktop/Dev/Python Codes/Web Tic-Tac-Toe/WebCode'
+getCWD = str(Path().absolute())
+absolutePath = getCWD.replace('Engine', 'WebCode')
 TEMPLATE_PATH.insert(0, absolutePath)
 
 # Кто выиграл
@@ -17,7 +21,7 @@ setWinner = ""
 @get('/static/<filename>')
 def serverStatic(filename):
     """Статические файлы CSS и png"""
-    return static_file(filename, root='../WebCode')
+    return static_file(filename, root=Path('../WebCode'))
 
 
 @get('/')
