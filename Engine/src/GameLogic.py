@@ -24,7 +24,6 @@ def takeInput(playerToken, myTurn):
 
 def compInput(compToken):
     """Ввод компьютера"""
-    global comp_place
     valid = False
     while not valid:
         compAnswer = randint(1, 9)

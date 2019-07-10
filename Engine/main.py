@@ -1,4 +1,4 @@
-from server import runServer
+from src.server import runServer
 
 # Запуск сервера
 if __name__ == '__main__':

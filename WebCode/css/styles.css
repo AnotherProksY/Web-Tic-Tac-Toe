@@ -1,0 +1,115 @@
+/* import fonts */
+@font-face {
+  font-family: Pixel;
+  src: url(../fonts/SmallestPixel-7.ttf);
+}
+/* ------------ */
+
+/* All Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: Pixel;
+}
+
+html,
+body {
+  height: 100%;
+  background: #222;
+}
+
+header {
+  background: white;
+  padding: 20px;
+}
+
+header>h1 {
+  color: #222;
+  font-size: 6.25rem; /* 100px / 16px */
+}
+
+main {
+  color: white;
+}
+
+.wrapper {
+  min-height: 100%;
+  margin-bottom: -50px;
+}
+
+.images {
+  position: relative;
+  width: 208px;
+  float: right;
+}
+
+.image {
+  display: inline-block;
+}
+
+.footer,
+.push {
+  height: 50px;
+}
+/* ---------- */
+
+
+/* MainPage Style */
+.instruction>h2 {
+  font-size: 3.125rem;
+  padding: 30px;
+}
+
+.instruction>ol {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+  max-width: 900px;
+  font-size: 1.5625rem; /* 25px / 16px */
+  padding: 20px;
+}
+
+li {
+  margin-bottom: 15px;
+}
+/* -------------- */
+
+
+/* GamePage Style */
+.gameView>table {
+  border-collapse: collapse;
+  margin: 50px auto; /* top-bot=50px / left-right=auto */
+}
+
+td {
+  border: 3px solid white;
+  height: 150px;
+  width: 150px;
+  min-width: 150px;
+  font-size: 4.6875rem; /* 75px / 16px */
+}
+/* -------------- */
+
+
+/* ScorePage Style */
+.results>h2 {
+  font-size: 3.75rem; /* 60px / 16px */
+  margin-top: 200px;
+}
+
+.results>p {
+  font-size: 2.5rem; /* 40px / 16px */
+  margin-top: 20px;
+}
+
+.word {
+  color: #228B22;
+}
+/* --------------- */
+
+
+/* Media Rules */
+
+/* ----------- */
