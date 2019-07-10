@@ -23,28 +23,28 @@ setWinner = ""
 def CSS(filename):
     """Статические файлы CSS"""
     # return static_file(filename, root=Path('../../WebCode/css'))
-    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe From Git/WebCode/css'))
+    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/css'))
 
 
 @get('/static/fonts/<filename>')
 def fonts(filename):
     """Статические файлы Fonts"""
     # return static_file(filename, root=Path('../../WebCode/fonts'))
-    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe From Git/WebCode/fonts'))
+    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/fonts'))
 
 
 @get('/static/img/<filename>')
 def IMG(filename):
     """Статические файлы IMG"""
     # return static_file(filename, root=Path('../../WebCode/img'))
-    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe From Git/WebCode/img'))
+    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/img'))
 
 
 @get('/static/favicon/<filename>')
 def FAV(filename):
     """Статические файлы FAV"""
     # return static_file(filename, root=Path('../../WebCode/favicon'))
-    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe From Git/WebCode/favicon'))
+    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/favicon'))
 # -----------------------------------------------------------
 
 
@@ -52,13 +52,13 @@ def FAV(filename):
 @get('/')
 def mainPage():
     """Главная страница"""
-    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe From Git/WebCode/MainPage.html')
+    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/MainPage.html')
 
 
 @get('/GamePage')
 def gamePage():
     """Страница с сеткой Tic-tac-toe"""
-    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe From Git/WebCode/GamePage.html',
+    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/GamePage.html',
                     place_1=str(GL.board[0]),
                     place_2=str(GL.board[1]),
                     place_3=str(GL.board[2]),
@@ -74,7 +74,7 @@ def gamePage():
 def gamePageScore():
     """Страница с выводом очков"""
     resetValues(True)
-    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe From Git/WebCode/Score.html', winner=str(setWinner))
+    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/Score.html', winner=str(setWinner))
 # -----------------------------------------------------------
 
 
