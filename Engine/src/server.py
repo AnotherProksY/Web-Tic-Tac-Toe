@@ -84,6 +84,7 @@ def Turn():
     """Функция игровой петли"""
     global setWinner
     myTurn = int(request.forms.get('myTurn'))
+    print(myTurn)
 
     # Первый вызов функции для обработки нашего хода
     setWinner = GL.gameLoop(myTurn)

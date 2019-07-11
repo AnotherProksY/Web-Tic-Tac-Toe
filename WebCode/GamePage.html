@@ -20,43 +20,36 @@
 
       <main>
         <!-- main open -->
-        <div class="gameView">
-          <table>
-            <tr>
-              <td>{{place_1}}</td>
-              <td>{{place_2}}</td>
-              <td>{{place_3}}</td>
-            </tr>
-            <tr>
-              <td>{{place_4}}</td>
-              <td>{{place_5}}</td>
-              <td>{{place_6}}</td>
-            </tr>
-            <tr>
-              <td>{{place_7}}</td>
-              <td>{{place_8}}</td>
-              <td>{{place_9}}</td>
-            </tr>
-          </table>
-        </div>
-        
-        <div class="turn">
-            <form action="/Turn" method="post">
-              Введите число <br>
-              <script type="text/javascript">
-              function checkValue(input) {
-                  var value = input.value;
-                  var rep = /[-\.;":'a-zA-Zа-яА-Я]/;
-                  if (rep.test(value)) {
-                      value = value.replace(rep, '');
-                      input.value = value;
-                  }
-              }
-              </script>
-              <input name="myTurn" type="text" onkeyup="return checkValue(this);" autocomplete="off" maxlength="1" required/><br>
-              <input type="submit" value="PUT NUMBER" class="click c"/>
-            </form>
+        <form id="form-id" action="/Turn" method="post">
+          <div class="gameView">
+            <table>
+              <tr>
+                <td id="1" onclick="submitForm(this.id);">{{place_1}}</td>
+                <td id="2" onclick="submitForm(this.id);">{{place_2}}</td>
+                <td id="3" onclick="submitForm(this.id);">{{place_3}}</td>
+              </tr>
+              <tr>
+                <td id="4" onclick="submitForm(this.id);">{{place_4}}</td>
+                <td id="5" onclick="submitForm(this.id);">{{place_5}}</td>
+                <td id="6" onclick="submitForm(this.id);">{{place_6}}</td>
+              </tr>
+              <tr>
+                <td id="7" onclick="submitForm(this.id);">{{place_7}}</td>
+                <td id="8" onclick="submitForm(this.id);">{{place_8}}</td>
+                <td id="9" onclick="submitForm(this.id);">{{place_9}}</td>
+              </tr>
+            </table>
           </div>
+          <input id="setValue" name="myTurn" type="hidden" value=""/>
+        </form>
+        
+        <script type="text/javascript">
+          function submitForm(id){
+            var form = document.getElementById("form-id");
+            document.getElementById("setValue").value = id;
+            form.submit();
+          }
+        </script>
 
       </main> <!-- main close -->
       <div class="push"></div>
