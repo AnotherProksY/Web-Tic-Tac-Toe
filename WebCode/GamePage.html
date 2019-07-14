@@ -44,11 +44,39 @@
         </form>
         
         <script type="text/javascript">
+          // var style = document.createElement('style');
+          
+          // function checkTag(id){
+          //   var cell = document.getElementById(id);
+          //   if (cell.value === 'X' || cell.value === 'O'){
+          //     style.innerHTML =
+          //         '.td:hover {' +
+          //            'cursor: pointer;' +
+          //            'background: red;' +
+          //          '}';
+          //   } else {
+          //     style.innerHTML =
+          //         '.td:hover {' +
+          //            'cursor: pointer;' +
+          //            'background: #228B22;' +
+          //          '}';
+          //     // if (cell.addEventListener('click', submitForm(id))){
+          //     //   cell.onmousemove.style.backgroundColor = "#228B22";
+          //     // };
+          //   };
+          //   var ref = document.querySelector('script');
+          //   ref.parentNode.insertBefore(style, ref);
+          // };
+
           function submitForm(id){
+            // var cell = document.getElementById(id);
+            // if (cell.value != 'X' || cell.value != 'O'){
+            // cell.style.backgroundColor = "#228B22";
             var form = document.getElementById("form-id");
             document.getElementById("setValue").value = id;
             form.submit();
-          }
+            // };
+          };
         </script>
 
       </main> <!-- main close -->
