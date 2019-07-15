@@ -89,6 +89,7 @@ td {
   width: 150px;
   min-width: 150px;
   font-size: 4.6875rem; /* 75px / 16px */
+  transition: all 0.3s ease;
 }
 /* -------------- */
 
