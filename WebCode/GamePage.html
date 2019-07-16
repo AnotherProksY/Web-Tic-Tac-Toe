@@ -45,12 +45,15 @@
         </form>
         
         <script type="text/javascript">
+          var globalCheck = true;
 
           function checkObj(obj){
             if (obj.textContent == 'X' || obj.textContent == 'O'){
               obj.style.background = 'red';
+              globalCheck = false;
             } else {
               obj.style.background = '#228B22';
+              globalCheck = true;
             };
           };
 
@@ -61,9 +64,11 @@
           };
 
           function submitForm(id){
-            var form = document.getElementById("form-id");
-            document.getElementById("setValue").value = id;
-            form.submit();
+            if (globalCheck){
+              var form = document.getElementById("form-id");
+              document.getElementById("setValue").value = id;
+              form.submit();
+            };
           };
         </script>
 
