@@ -92,7 +92,7 @@ td {
   transition: all 0.3s ease;
 }
 
-main>p {
+#alert {
   font-size: 3.125rem;
   color: red;
   -webkit-transition: opacity .5s ease-in-out;
