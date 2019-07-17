@@ -91,6 +91,16 @@ td {
   font-size: 4.6875rem; /* 75px / 16px */
   transition: all 0.3s ease;
 }
+
+main>p {
+  font-size: 3.125rem;
+  color: red;
+  -webkit-transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -ms-transition: opacity .5s ease-in-out;
+  -o-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+}
 /* -------------- */
 
 
