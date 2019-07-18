@@ -94,7 +94,7 @@ td {
 
 #alert {
   font-size: 3.125rem;
-  color: red;
+  color: #AB2217;
   -webkit-transition: opacity .5s ease-in-out;
   -moz-transition: opacity .5s ease-in-out;
   -ms-transition: opacity .5s ease-in-out;
