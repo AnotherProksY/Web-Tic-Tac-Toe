@@ -1,5 +1,5 @@
-from src.server import runServer
+from src.server import run_server
 
 # Запуск сервера
 if __name__ == '__main__':
-    runServer(True)
+    run_server(True)

@@ -15,7 +15,7 @@ from pathlib import Path
 # TEMPLATE_PATH.insert(0, absolutePath)
 
 # Кто выиграл
-setWinner = ""
+set_winner = ""
 
 
 # Статические файлы------------------------------------------
@@ -50,13 +50,13 @@ def FAV(filename):
 
 # Руты-------------------------------------------------------
 @get('/')
-def mainPage():
+def main_page():
     """Главная страница"""
     return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/MainPage.html')
 
 
 @get('/GamePage')
-def gamePage():
+def game_page():
     """Страница с сеткой Tic-tac-toe"""
     return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/GamePage.html',
                     place_1=str(GL.board[0]),
@@ -73,8 +73,8 @@ def gamePage():
 @get('/GamePage/Score')
 def gamePageScore():
     """Страница с выводом очков"""
-    resetValues(True)
-    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/Score.html', winner=str(setWinner))
+    reset_values(True)
+    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/Score.html', winner=str(set_winner))
 # -----------------------------------------------------------
 
 
@@ -82,35 +82,35 @@ def gamePageScore():
 @post('/Turn')
 def Turn():
     """Функция игровой петли"""
-    global setWinner
-    myTurn = int(request.forms.get('myTurn'))
+    global set_winner
+    my_turn = int(request.forms.get('myTurn'))
 
     # Первый вызов функции для обработки нашего хода
-    setWinner = GL.gameLoop(myTurn)
-    if setWinner == '👨‍💻':
+    set_winner = GL.game_loop(my_turn)
+    if set_winner == '👨‍💻':
         redirect('/GamePage/Score', code=None)
-    elif setWinner == '⚔️':
+    elif set_winner == '⚔️':
         redirect('/GamePage/Score', code=None)
 
     # Второй вызов функции для обработки хода компьютера
-    setWinner = GL.gameLoop(None)
-    if setWinner == '🖥':
+    set_winner = GL.game_loop(None)
+    if set_winner == '🖥':
         redirect('/GamePage/Score', code=None)
-    elif setWinner == '⚔️':
+    elif set_winner == '⚔️':
         redirect('/GamePage/Score', code=None)
     redirect('/GamePage', code=None)
 
 
-def resetValues(doReset):
+def reset_values(do_reset):
     """Чистим значения"""
-    if doReset:
+    if do_reset:
         GL.board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        GL.turnsRemaining = 9
+        GL.turns_remaining = 9
         GL.turn = 0
         GL.congrats = ""
 
 
-def runServer(start):
+def run_server(start):
     """Запускаем сервер"""
     if start:
         run(host='localhost', reloader=True, port=8080)
