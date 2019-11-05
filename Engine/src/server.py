@@ -1,7 +1,7 @@
 # Серверный модуль
 from bottle import get, post, request
 from bottle import run, redirect
-from bottle import template, TEMPLATE_PATH, static_file
+from bottle import template, static_file
 
 # Модуль игровой логики
 import src.GameLogic as GL
@@ -10,9 +10,8 @@ import src.GameLogic as GL
 from pathlib import Path
 
 # Путь до HTML файлов
-# getCWD = str(Path().absolute())
-# absolutePath = getCWD.replace('Engine/src', 'WebCode')
-# TEMPLATE_PATH.insert(0, absolutePath)
+getCWD = str(Path().absolute())
+absolutePath = getCWD.replace('Engine', 'WebCode')
 
 # Кто выиграл
 set_winner = ""
@@ -22,29 +21,28 @@ set_winner = ""
 @get('/static/css/<filename>')
 def CSS(filename):
     """Статические файлы CSS"""
-    # return static_file(filename, root=Path('../../WebCode/css'))
-    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/css'))
+    return static_file(filename, root=Path(absolutePath + '/css'))
 
 
 @get('/static/fonts/<filename>')
 def fonts(filename):
     """Статические файлы Fonts"""
-    # return static_file(filename, root=Path('../../WebCode/fonts'))
-    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/fonts'))
+    return static_file(filename, root=Path(absolutePath + '/fonts'))
+
 
 
 @get('/static/img/<filename>')
 def IMG(filename):
     """Статические файлы IMG"""
-    # return static_file(filename, root=Path('../../WebCode/img'))
-    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/img'))
+    return static_file(filename, root=Path(absolutePath + '/img'))
+
 
 
 @get('/static/favicon/<filename>')
 def FAV(filename):
     """Статические файлы FAV"""
-    # return static_file(filename, root=Path('../../WebCode/favicon'))
-    return static_file(filename, root=Path('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/favicon'))
+    return static_file(filename, root=Path(absolutePath + '/favicon'))
+
 # -----------------------------------------------------------
 
 
@@ -52,13 +50,13 @@ def FAV(filename):
 @get('/')
 def main_page():
     """Главная страница"""
-    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/MainPage.html')
+    return template(absolutePath + '/MainPage.html')
 
 
 @get('/GamePage')
 def game_page():
     """Страница с сеткой Tic-tac-toe"""
-    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/GamePage.html',
+    return template(absolutePath + '/GamePage.html',
                     place_1=str(GL.board[0]),
                     place_2=str(GL.board[1]),
                     place_3=str(GL.board[2]),
@@ -74,7 +72,7 @@ def game_page():
 def gamePageScore():
     """Страница с выводом очков"""
     reset_values(True)
-    return template('/Users/kamil/Desktop/Dev/Python Codes/Web-Tic-Tac-Toe/WebCode/Score.html', winner=str(set_winner))
+    return template(absolutePath + '/Score.html', winner=str(set_winner))
 # -----------------------------------------------------------
 
 
@@ -82,22 +80,20 @@ def gamePageScore():
 @post('/Turn')
 def Turn():
     """Функция игровой петли"""
-    global set_winner
-    my_turn = int(request.forms.get('myTurn'))
+    # Функция проверки победителя
+    def winner(player):
+        global set_winner
+        set_winner = GL.game_loop(player)
+        if set_winner:
+            redirect('/GamePage/Score', code=None)
 
     # Первый вызов функции для обработки нашего хода
-    set_winner = GL.game_loop(my_turn)
-    if set_winner == '👨‍💻':
-        redirect('/GamePage/Score', code=None)
-    elif set_winner == '⚔️':
-        redirect('/GamePage/Score', code=None)
+    winner(int(request.forms.get('myTurn')))
 
     # Второй вызов функции для обработки хода компьютера
-    set_winner = GL.game_loop(None)
-    if set_winner == '🖥':
-        redirect('/GamePage/Score', code=None)
-    elif set_winner == '⚔️':
-        redirect('/GamePage/Score', code=None)
+    winner(None)
+    
+    # Прыгнуть обратно на страницу с сеткой
     redirect('/GamePage', code=None)
 
 
