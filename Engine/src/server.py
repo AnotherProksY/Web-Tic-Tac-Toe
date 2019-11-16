@@ -30,12 +30,10 @@ def fonts(filename):
     return static_file(filename, root=Path(absolutePath + '/fonts'))
 
 
-
 @get('/static/img/<filename>')
 def IMG(filename):
     """Статические файлы IMG"""
     return static_file(filename, root=Path(absolutePath + '/img'))
-
 
 
 @get('/static/favicon/<filename>')
@@ -92,7 +90,7 @@ def Turn():
 
     # Второй вызов функции для обработки хода компьютера
     winner(None)
-    
+
     # Прыгнуть обратно на страницу с сеткой
     redirect('/GamePage', code=None)
 
