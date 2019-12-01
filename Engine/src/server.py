@@ -10,8 +10,8 @@ import src.GameLogic as GL
 from pathlib import Path
 
 # Путь до HTML файлов
-getCWD = str(Path().absolute())
-absolutePath = getCWD.replace('Engine', 'WebCode')
+get_cwd = str(Path().absolute())
+absolute_path = get_cwd.replace('Engine', 'WebCode')
 
 # Кто выиграл
 set_winner = ""
@@ -21,25 +21,25 @@ set_winner = ""
 @get('/static/css/<filename>')
 def CSS(filename):
     """Статические файлы CSS"""
-    return static_file(filename, root=Path(absolutePath + '/css'))
+    return static_file(filename, root=Path(absolute_path + '/css'))
 
 
 @get('/static/fonts/<filename>')
 def fonts(filename):
     """Статические файлы Fonts"""
-    return static_file(filename, root=Path(absolutePath + '/fonts'))
+    return static_file(filename, root=Path(absolute_path + '/fonts'))
 
 
 @get('/static/img/<filename>')
 def IMG(filename):
     """Статические файлы IMG"""
-    return static_file(filename, root=Path(absolutePath + '/img'))
+    return static_file(filename, root=Path(absolute_path + '/img'))
 
 
 @get('/static/favicon/<filename>')
 def FAV(filename):
     """Статические файлы FAV"""
-    return static_file(filename, root=Path(absolutePath + '/favicon'))
+    return static_file(filename, root=Path(absolute_path + '/favicon'))
 
 # -----------------------------------------------------------
 
@@ -48,13 +48,13 @@ def FAV(filename):
 @get('/')
 def main_page():
     """Главная страница"""
-    return template(absolutePath + '/MainPage.html')
+    return template(absolute_path + '/MainPage.html')
 
 
 @get('/GamePage')
 def game_page():
     """Страница с сеткой Tic-tac-toe"""
-    return template(absolutePath + '/GamePage.html',
+    return template(absolute_path + '/GamePage.html',
                     place_1=str(GL.board[0]),
                     place_2=str(GL.board[1]),
                     place_3=str(GL.board[2]),
@@ -67,10 +67,10 @@ def game_page():
 
 
 @get('/GamePage/Score')
-def gamePageScore():
+def game_page_score():
     """Страница с выводом очков"""
     reset_values(True)
-    return template(absolutePath + '/Score.html', winner=str(set_winner))
+    return template(absolute_path + '/Score.html', winner=str(set_winner))
 # -----------------------------------------------------------
 
 
