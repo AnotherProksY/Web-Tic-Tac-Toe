@@ -48,6 +48,7 @@ def FAV(filename):
 @get('/')
 def main_page():
     """Главная страница"""
+    reset_values(True)
     return template(absolute_path + '/MainPage.html')
 
 
