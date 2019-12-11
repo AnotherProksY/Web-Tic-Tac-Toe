@@ -1,42 +1,41 @@
 # Серверный модуль
-from bottle import get, post, request
-from bottle import run, redirect
-from bottle import template, static_file
+from flask import Flask
+app = Flask(__name__)
 
 # Модуль игровой логики
-import src.GameLogic as GL
+import flaskr.game_logic as GL
 
 # Модуль для получения пути
 from pathlib import Path
 
 # Путь до HTML файлов
 get_cwd = str(Path().absolute())
-absolute_path = get_cwd.replace('Engine', 'WebCode')
+absolute_path = get_cwd + '/flaskr'
 
 # Кто выиграл
 set_winner = ""
 
 
 # Статические файлы------------------------------------------
-@get('/static/css/<filename>')
+@app.route('/static/<filename>')
 def CSS(filename):
     """Статические файлы CSS"""
     return static_file(filename, root=Path(absolute_path + '/css'))
 
 
-@get('/static/fonts/<filename>')
+@app.route('/static/<filename>')
 def fonts(filename):
     """Статические файлы Fonts"""
     return static_file(filename, root=Path(absolute_path + '/fonts'))
 
 
-@get('/static/img/<filename>')
+@app.route('/static/<filename>')
 def IMG(filename):
     """Статические файлы IMG"""
     return static_file(filename, root=Path(absolute_path + '/img'))
 
 
-@get('/static/favicon/<filename>')
+@app.route('/static/<filename>')
 def FAV(filename):
     """Статические файлы FAV"""
     return static_file(filename, root=Path(absolute_path + '/favicon'))
@@ -45,14 +44,14 @@ def FAV(filename):
 
 
 # Руты-------------------------------------------------------
-@get('/')
+@app.route('/')
 def main_page():
     """Главная страница"""
     reset_values(True)
     return template(absolute_path + '/MainPage.html')
 
 
-@get('/GamePage')
+@app.route('/GamePage')
 def game_page():
     """Страница с сеткой Tic-tac-toe"""
     return template(absolute_path + '/GamePage.html',
@@ -67,7 +66,7 @@ def game_page():
                     place_9=str(GL.board[8]))
 
 
-@get('/GamePage/Score')
+@app.route('/GamePage/Score')
 def game_page_score():
     """Страница с выводом очков"""
     reset_values(True)
@@ -108,5 +107,6 @@ def reset_values(do_reset):
 def run_server(start):
     """Запускаем сервер"""
     if start:
-        run(host='0.0.0.0', reloader=True, port=8080)
+        app.run(debug=True,host='0.0.0.0')
+
 # -----------------------------------------------------------
