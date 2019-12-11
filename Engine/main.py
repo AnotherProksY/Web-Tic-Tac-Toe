@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 from src.server import run_server
 
 # Запуск сервера

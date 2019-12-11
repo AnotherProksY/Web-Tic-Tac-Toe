@@ -107,5 +107,5 @@ def reset_values(do_reset):
 def run_server(start):
     """Запускаем сервер"""
     if start:
-        run(host='localhost', reloader=True, port=8080)
+        run(host='0.0.0.0', reloader=True, port=8080)
 # -----------------------------------------------------------
