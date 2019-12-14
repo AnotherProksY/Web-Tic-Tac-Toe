@@ -5,7 +5,7 @@ from flask import request, redirect
 app = Flask(__name__)
 
 # Модуль игровой логики
-import game_logic as GL
+import flaskr.game_logic as GL
 
 # Кто выиграл
 set_winner = ""
@@ -72,11 +72,5 @@ def reset_values(do_reset):
         GL.turns_remaining = 9
         GL.turn = 0
         GL.congrats = ""
-
-
-def run_server(start):
-    """Запускаем сервер"""
-    if start:
-        app.run(debug=True,host='0.0.0.0')
 
 # -----------------------------------------------------------

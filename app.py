@@ -1,6 +1,5 @@
-from flaskr.server import run_server
+from flaskr.server import app
 
-# Запуск сервера
-if __name__ == '__main__':
-    run_server(True)
+if __name__ == "__main__":
+    app.run(debug=True,host='0.0.0.0')
 
