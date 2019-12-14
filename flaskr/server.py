@@ -1,46 +1,14 @@
 # Серверный модуль
-from flask import Flask
+from flask import Flask 
+from flask import render_template
+from flask import request, redirect
 app = Flask(__name__)
 
 # Модуль игровой логики
-import flaskr.game_logic as GL
-
-# Модуль для получения пути
-from pathlib import Path
-
-# Путь до HTML файлов
-get_cwd = str(Path().absolute())
-absolute_path = get_cwd + '/flaskr'
+import game_logic as GL
 
 # Кто выиграл
 set_winner = ""
-
-
-# Статические файлы------------------------------------------
-@app.route('/static/<filename>')
-def CSS(filename):
-    """Статические файлы CSS"""
-    return static_file(filename, root=Path(absolute_path + '/css'))
-
-
-@app.route('/static/<filename>')
-def fonts(filename):
-    """Статические файлы Fonts"""
-    return static_file(filename, root=Path(absolute_path + '/fonts'))
-
-
-@app.route('/static/<filename>')
-def IMG(filename):
-    """Статические файлы IMG"""
-    return static_file(filename, root=Path(absolute_path + '/img'))
-
-
-@app.route('/static/<filename>')
-def FAV(filename):
-    """Статические файлы FAV"""
-    return static_file(filename, root=Path(absolute_path + '/favicon'))
-
-# -----------------------------------------------------------
 
 
 # Руты-------------------------------------------------------
@@ -48,13 +16,13 @@ def FAV(filename):
 def main_page():
     """Главная страница"""
     reset_values(True)
-    return template(absolute_path + '/MainPage.html')
+    return render_template('main.html')
 
 
 @app.route('/GamePage')
 def game_page():
     """Страница с сеткой Tic-tac-toe"""
-    return template(absolute_path + '/GamePage.html',
+    return render_template('game.html',
                     place_1=str(GL.board[0]),
                     place_2=str(GL.board[1]),
                     place_3=str(GL.board[2]),
@@ -68,14 +36,14 @@ def game_page():
 
 @app.route('/GamePage/Score')
 def game_page_score():
-    """Страница с выводом очков"""
+    """Страница с выводом победителя"""
     reset_values(True)
-    return template(absolute_path + '/Score.html', winner=str(set_winner))
+    return render_template('score.html', winner=str(set_winner))
 # -----------------------------------------------------------
 
 
 # Функции----------------------------------------------------
-@post('/Turn')
+@app.route('/Turn', methods = ['POST'])
 def Turn():
     """Функция игровой петли"""
     # Функция проверки победителя
@@ -83,20 +51,22 @@ def Turn():
         global set_winner
         set_winner = GL.game_loop(player)
         if set_winner:
-            redirect('/GamePage/Score', code=None)
+            return True
 
     # Первый вызов функции для обработки нашего хода
-    winner(int(request.forms.get('myTurn')))
+    if winner(int(request.form.get('myTurn'))):
+        return redirect('/GamePage/Score')
 
     # Второй вызов функции для обработки хода компьютера
-    winner(None)
+    if winner(None):
+        return redirect('/GamePage/Score')
 
     # Прыгнуть обратно на страницу с сеткой
-    redirect('/GamePage', code=None)
+    return redirect('/GamePage')
 
 
 def reset_values(do_reset):
-    """Чистим значения"""
+    """Чистим значения для следующей игры"""
     if do_reset:
         GL.board = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         GL.turns_remaining = 9

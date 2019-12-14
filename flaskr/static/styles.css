@@ -1,7 +1,7 @@
 /* import fonts */
 @font-face {
   font-family: Pixel;
-  src: url(../fonts/SmallestPixel-7.ttf);
+  src: url(/static/SmallestPixel-7.ttf);
 }
 /* ------------ */
 
