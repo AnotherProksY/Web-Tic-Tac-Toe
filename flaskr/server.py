@@ -5,7 +5,7 @@ from flask import request, redirect
 app = Flask(__name__)
 
 # Модуль игровой логики
-import flaskr.game_logic as GL
+import flaskr.game as GL
 
 # Кто выиграл
 set_winner = ""
@@ -16,7 +16,7 @@ set_winner = ""
 def main_page():
     """Главная страница"""
     reset_values(True)
-    return render_template('main.html')
+    return render_template('index.html')
 
 
 @app.route('/GamePage')
